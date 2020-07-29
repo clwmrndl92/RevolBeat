@@ -167,7 +167,7 @@ public class Note : MonoBehaviour
             }
         }
         SongManager.noteScores[(int)state] += 1;
-        if(SongManager.noteScores[4] > SongManager.combo)
+        if(SongManager.noteScores[4] < SongManager.combo)
         {
             SongManager.noteScores[4] = SongManager.combo;
         }
