@@ -14,85 +14,126 @@ public enum State
 
 public class SongManager : GameManager
 {
+    public static SongManager songManager = null;
+
     public State state = State.Loading;
     public GameObject notePrefab;
-    public float setNoteSpeed = 100;
+    public float noteSpeed = 100;
     public float noteInterval = 10;
     public GameObject[] notePanels;
-    public Color[] setNoteColors;
-    public Text scoreText;
+    public GameObject[] buttons;
+    public Color[] noteColors;
+    public Text scoreText, comboText;
+    public GameObject background;
 
-    public static Color[] noteColors;
+    public static Song selectedSong = null;
     public static int score = 0;
     public static int combo = 0;
-    public static float NoteSpeed;
-    public static GameObject rescentNote = null;
-    public static GameObject bottomNote = null;
+    public static int[] noteScores = new int[5];
+    public static GameObject[] bottomNote;
+    public static float[] notePosx;
+    public static int noteNum;
 
-    static int noteNum;
-    float timer, notePosY;
-    float[] notePosx;
+    float timer, notePosY,tmptimer = 0;
 
     // Start is called before the first frame update
     void Awake()
     {
+        if (songManager == null)
+            songManager = this;
+        else if (songManager != this)
+            Destroy(this.gameObject);
         timer = 0.0f;
-        NoteSpeed = setNoteSpeed;
         noteNum = notePanels.Length;
         notePosx = new float[noteNum];
-        noteColors = new Color[noteNum+1];
         for(int i = 0; i < noteNum; ++i)
         {
             notePosx[i] = notePanels[i].transform.position.x;
-            noteColors[i] = setNoteColors[i];
         }
-        noteColors[noteNum] = new Color(255, 255, 255, 255);
         notePosY = notePanels[0].transform.position.y;
+        bottomNote = new GameObject[noteNum];
     }
     void Start()
     {
-        loading();
+        Loading();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            OnClick(0);
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            OnClick(1);
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            OnClick(2);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            ToLeftButton();
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            ToRightButton();
+        }
         if (state == State.Play)
         {
             timer += Time.deltaTime;
+            tmptimer += Time.deltaTime;
+            Debug.Log(tmptimer);
             if (timer > noteInterval/10)
             {
-                randomNote();
+                RandomNote();
                 timer = 0;
             }
+            if (tmptimer > 50)
+            {
+                state = State.End;
+            }
             scoreText.text = score.ToString();
+            comboText.text = combo.ToString();
         }
-    }
+        if (state == State.End)
+        {
+            SceneManager.LoadScene("Result");
+        }
+}
 
-    int loading()
+    void Loading()
     {
+        selectedSong = GameManager.instance.songList[SelectMusic.currentsong];
+        LoadSong(selectedSong);
         state = State.Play;
-        return 0;
     }
 
-    void randomNote()
+    void LoadSong(Song song)
     {
-        System.Random random = new System.Random();
-        GameObject tmpNote = Instantiate(notePrefab, new Vector3(notePosx[Random.Range(0, noteNum)], notePosY, 0), Quaternion.identity) as GameObject;
-        if (rescentNote != null)
+        score = 0;
+        combo = 0;
+        for(int i = 0; i < 5; ++i)
         {
-            rescentNote.GetComponent<Note>().setNext(tmpNote);
+            noteScores[i] = 0;
         }
-        else
-        {
-            bottomNote = tmpNote;
-        }
-        rescentNote = tmpNote;
-        System.Array values = System.Enum.GetValues(typeof(Note.Note_Color));
-        Note.Note_Color randomColor = (Note.Note_Color)values.GetValue(random.Next(values.Length));
-        tmpNote.GetComponent<Note>().setColor(randomColor);
+        background.GetComponent<SpriteRenderer>().sprite = song.cover;
     }
 
+
+    void RandomNote()
+    {
+        MakeNote(Random.Range(0, noteNum), Random.Range(0, noteNum + 1));
+    }
+
+    void MakeNote(int noteLocation, int noteColor)
+    {
+        GameObject tmpNote = Instantiate(notePrefab, new Vector3(notePosx[noteLocation], notePosY, 0), Quaternion.identity) as GameObject;
+        tmpNote.GetComponent<Note>().SetColor((Note.Note_Color)noteColor);
+        tmpNote.GetComponent<Note>().noteLocation = (Note.Note_Location)noteLocation;
+    } 
     public void Quit(string next_scene)
     {
         SceneManager.LoadScene(next_scene);
@@ -105,11 +146,26 @@ public class SongManager : GameManager
     {
         Time.timeScale = 1.0f;
     }
-    public void OnClick()
+    public void OnClick(int buttonLocation)
     {
-        if (bottomNote != null && bottomNote.GetComponent<Note>().isTouch)
+        if (bottomNote[buttonLocation] != null)
         {
-            bottomNote.GetComponent<Note>().destroyTile();
+            bottomNote[buttonLocation].GetComponent<Note>().AddScore(bottomNote[buttonLocation].GetComponent<Note>().noteState, 
+                bottomNote[buttonLocation].GetComponent<Note>().matchColor(buttons[buttonLocation]));
+        }
+    }
+    public void ToLeftButton()
+    {
+        for(int i = 0; i < noteNum; ++i)
+        {
+            buttons[i].gameObject.GetComponent<NoteButton>().ToLeftButton();
+        }
+    }
+    public void ToRightButton()
+    {
+        for (int i = 0; i < noteNum; ++i)
+        {
+            buttons[i].gameObject.GetComponent<NoteButton>().ToRightButton();
         }
     }
 }

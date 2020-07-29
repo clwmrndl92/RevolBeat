@@ -15,12 +15,6 @@ public class ButtonManager : MonoBehaviour
     public Outline o2 = null;
     public Outline o3 = null;
 
-    //Change Scene
-    public void ChScene(string next_scene)
-    {
-        GameManager.instance.changeScene(next_scene);
-    }
-
     //Change Difficulty
     public void ChDifficulty(int num)
     {

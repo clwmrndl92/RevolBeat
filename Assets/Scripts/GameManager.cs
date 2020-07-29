@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
+public class Song
+{
+    public string name;
+    public string composer;
+    public string info;
+    public Sprite cover;
+}
 public class GameManager : MonoBehaviour
 {
     public int Difficulty = 3;
+    public Song[] songList = null;
     public static GameManager instance = null;
-
-    public void changeScene(string next_scene)
-    {
-        SceneManager.LoadScene(next_scene);
-    }
     
     public void setDifficulty(int num)
     {
@@ -26,5 +30,14 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
 
         DontDestroyOnLoad(this.gameObject);
+    }
+    private void Start()
+    {
+        SceneManager.LoadScene("Start");
+    }
+    public void Quit()
+    {
+        UnityEditor.EditorApplication.isPlaying = false;
+        //Application.Quit();
     }
 }

@@ -9,17 +9,23 @@ public class Note : MonoBehaviour
 {
     public enum Note_Color
     {
-        Blue,
+        Blue, 
         Green,
         Orange,
         White
     }
-    public enum Tile_State
+    public enum Note_State
     {
         Perfect,
         Great,
         Good,
         Miss
+    }
+    public enum Note_Location
+    {
+        Left,
+        Center,
+        Right
     }
     public bool isFall = true;
     public bool isTouch = false;
@@ -27,19 +33,18 @@ public class Note : MonoBehaviour
     Transform target;
     SpriteRenderer targetRender;
 
-    Tile_State tileState = Tile_State.Miss;
+    public Note_State noteState = Note_State.Miss;
+    public Note_Location noteLocation = Note_Location.Center;
     Note_Color color = Note_Color.White;
-    GameObject prevNote = null, nextNote = null;
 
     private void Awake()
     {
-        prevNote = SongManager.rescentNote;
         target = GetComponent<Transform>();
         targetRender = GetComponent<SpriteRenderer>();
     }
     void Start()
     {
-        targetRender.color = SongManager.noteColors[(int)this.color];
+        targetRender.color = SongManager.songManager.noteColors[(int)this.color];
     }
 
     // Update is called once per frame
@@ -47,13 +52,13 @@ public class Note : MonoBehaviour
     {
         if (isFall)
         {
-            noteFall();
+            NoteFall();
         }
     }
 
-    void noteFall()
+    void NoteFall()
     {
-        target.Translate(new Vector3(0, (-1) * SongManager.NoteSpeed * Time.deltaTime, 0));
+        target.Translate(new Vector3(0, (-1) * SongManager.songManager.noteSpeed * Time.deltaTime, 0));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -62,87 +67,121 @@ public class Note : MonoBehaviour
         if (collision.tag == "Touch")
         {
             isTouch = true;
+            SongManager.bottomNote[(int)noteLocation] = gameObject;
         }
         else if (collision.tag == "Good")
         {
-            tileState = Tile_State.Good;
+            noteState = Note_State.Good;
         }
         else if (collision.tag == "Great")
         {
-            tileState = Tile_State.Great;
+            noteState = Note_State.Great;
         }
         else if (collision.tag == "Perfect")
         {
-            tileState = Tile_State.Perfect;
+            noteState = Note_State.Perfect;
         }
-        else if(collision.tag == "Destroy" && prevNote == null)
+        else if(collision.tag == "Destroy")
         {
-            destroyTile();
+            AddScore(Note_State.Miss, false);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Perfect")
         {
-            tileState = Tile_State.Great;
+            noteState = Note_State.Great;
         }
         else if (collision.tag == "Great")
         {
-            tileState = Tile_State.Good;
+            noteState = Note_State.Good;
         }
         else if (collision.tag == "Good")
         {
-            tileState = Tile_State.Miss;
+            noteState = Note_State.Miss;
         }
     }
 
-    public void setColor(Note_Color color)
+    public void SetColor(Note_Color color)
     {
         this.color = color;
     }
-    public void setNext(GameObject next)
+    public void AddScore(Note_State state, bool colorMatch)
     {
-        nextNote = next;
-    }
-    public void destroyPrev()
-    {
-        prevNote = null;
-    }
-    public void addScore()
-    {
-        if(tileState == Tile_State.Perfect)
+        if (colorMatch)
         {
             SongManager.combo++;
-            SongManager.score += 10;
-        }
-        else if (tileState == Tile_State.Great)
-        {
-            SongManager.combo++;
-            SongManager.score += 5;
-        }
-        else if (tileState == Tile_State.Good)
-        {
-            SongManager.combo++;
-            SongManager.score += 1;
-        }
-        else if (tileState == Tile_State.Miss)
-        {
-            SongManager.combo = 0;
-        }
-    }
-    public void destroyTile()
-    {
-        addScore();
-        if (nextNote != null)
-        {
-            nextNote.GetComponent<Note>().destroyPrev();
-            SongManager.bottomNote = nextNote;
+            SongManager.score += 100;
+
+            if (state == Note_State.Perfect)
+            {
+                SongManager.combo++;
+                SongManager.score += 10;
+            }
+            else if (state == Note_State.Great)
+            {
+                SongManager.combo++;
+                SongManager.score += 5;
+            }
+            else if (state == Note_State.Good)
+            {
+                SongManager.combo++;
+                SongManager.score += 1;
+            }
+            else if (state == Note_State.Miss)
+            {
+                SongManager.combo = 0;
+                SongManager.score -= 100;
+            }
         }
         else
         {
-            SongManager.rescentNote = null;
-            SongManager.bottomNote = null;
+            if (color == Note_Color.White)
+            {
+                if (state == Note_State.Perfect)
+                {
+                    SongManager.combo++;
+                    SongManager.score += 10;
+                }
+                else if (state == Note_State.Great)
+                {
+                    SongManager.combo++;
+                    SongManager.score += 5;
+                }
+                else if (state == Note_State.Good)
+                {
+                    SongManager.combo++;
+                    SongManager.score += 1;
+                }
+                else if (state == Note_State.Miss)
+                {
+                    SongManager.combo = 0;
+                    SongManager.score -= 5;
+                }
+            }
+            else
+            {
+                SongManager.combo = 0;
+                SongManager.score -= 5;
+                state = Note_State.Miss;
+            }
+        }
+        SongManager.noteScores[(int)state] += 1;
+        if(SongManager.noteScores[4] > SongManager.combo)
+        {
+            SongManager.noteScores[4] = SongManager.combo;
         }
         Destroy(gameObject);
+    }
+    public bool matchColor(GameObject button)
+    {
+        if(button.GetComponent<NoteButton>().buttonColor == color)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
