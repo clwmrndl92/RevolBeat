@@ -26,7 +26,7 @@ public class SongManager : GameManager
     public Text scoreText, comboText;
     public GameObject background;
 
-    public static Song selectedSong = null;
+    [SerializeField]public static Song selectedSong = null;
     public static int score = 0;
     public static int combo = 0;
     public static int[] noteScores = new int[5];
@@ -109,6 +109,7 @@ public class SongManager : GameManager
         selectedSong = GameManager.instance.songList[SelectMusic.currentsong];
         LoadSong(selectedSong);
         state = State.Play;
+        //gameObject.GetComponent<AudioSource>().Play(delay);
     }
 
     void LoadSong(Song song)
@@ -119,7 +120,8 @@ public class SongManager : GameManager
         {
             noteScores[i] = 0;
         }
-        background.GetComponent<SpriteRenderer>().sprite = song.cover;
+        background.GetComponent<Image>().sprite = song.cover;
+        gameObject.GetComponent<AudioSource>().clip = song.music;
     }
 
 

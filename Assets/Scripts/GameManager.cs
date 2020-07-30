@@ -10,6 +10,7 @@ public class Song
     public string composer;
     public string info;
     public Sprite cover;
+    public AudioClip music;
 }
 public class GameManager : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class GameManager : MonoBehaviour
     }
     public void Quit()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
-        //Application.Quit();
+        //UnityEditor.EditorApplication.isPlaying = false;
+        Application.Quit();
     }
 }
