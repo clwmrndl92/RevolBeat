@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Perfect
+  - Great
+  - Good
+  - Tile
+  - Destroy
+  - Touch
   layers:
   - Default
   - TransparentFX
@@ -17,7 +23,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Tile
   - 
   - 
   - 

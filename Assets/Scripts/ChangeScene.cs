@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneChange : MonoBehaviour
+public class ChangeScene : MonoBehaviour
 {
-
-    public void changeScene(string next_scene)
+    public void changeScene(string nextScene)
     {
-        SceneManager.LoadScene(next_scene);
+
+        SceneManager.LoadScene(nextScene);
     }
 }
