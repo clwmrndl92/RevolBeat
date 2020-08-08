@@ -129,6 +129,7 @@ public class Note : MonoBehaviour
             {
                 SongManager.combo = 0;
                 SongManager.score -= 0;
+                SongManager.hp -= 10;
             }
         }
         else
@@ -154,12 +155,14 @@ public class Note : MonoBehaviour
                 {
                     SongManager.combo = 0;
                     SongManager.score -= 0;
+                    SongManager.hp -= 10;
                 }
             }
             else
             {
                 SongManager.combo = 0;
                 SongManager.score -= 0;
+                SongManager.hp -= 10;
                 state = Note_State.Miss;
             }
         }

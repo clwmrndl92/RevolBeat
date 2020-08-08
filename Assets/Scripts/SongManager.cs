@@ -17,14 +17,7 @@ public enum State
 public class SongManager : GameManager
 {
     private AudioSource audioSource;
-<<<<<<< HEAD
     public float noteSpeed;
-=======
-<<<<<<< HEAD
-    public float noteSpeed;
-=======
->>>>>>> 9bcd32e890cb1bb5fe29dd3fb1d583d0d5fb61e1
->>>>>>> dfe8766cead11049eeee8ef5ebce95b65ab53731
     public static SongManager songManager = null;
 
     public State state = State.Loading;
@@ -33,11 +26,13 @@ public class SongManager : GameManager
     public GameObject[] notePanels;
     public GameObject[] buttons;
     public Color[] noteColors;
-    public Text scoreText, comboText;
+    public Text scoreText, comboText, hpText;
     public GameObject background;
+
     [SerializeField]public static Song selectedSong = null;
     public static int score = 0;
     public static int combo = 0;
+    public static int hp = 100;
     public static int[] noteScores = new int[5];
     public static GameObject[] bottomNote;
     public static float[] notePosx;
@@ -85,6 +80,18 @@ public class SongManager : GameManager
         {
             OnClick(2);
         }
+        if (Input.GetKeyUp(KeyCode.Z))
+        {
+            buttons[0].GetComponent<NoteButton>().ButtonUp();
+        }
+        if (Input.GetKeyUp(KeyCode.X))
+        {
+            buttons[1].GetComponent<NoteButton>().ButtonUp();
+        }
+        if (Input.GetKeyUp(KeyCode.C))
+        {
+            buttons[2].GetComponent<NoteButton>().ButtonUp();
+        }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             ToLeftButton();
@@ -129,6 +136,13 @@ public class SongManager : GameManager
             }
             scoreText.text = score.ToString();
             comboText.text = combo.ToString();
+            hpText.text = hp.ToString();
+        }
+        if (hp < 0)
+        {
+            score = -1;
+            combo = 0;
+            state = State.End;
         }
         if (state == State.End)
         {
@@ -143,17 +157,9 @@ public class SongManager : GameManager
         noteSpeed = 3*selectedSong.bpm[difficulty];
         noteInterval = 4*259/noteSpeed;
         LoadSong(selectedSong);
-<<<<<<< HEAD
         selectedSong.LoadNote();
         LoadNote(selectedSong);
-=======
-<<<<<<< HEAD
-        selectedSong.LoadNote();
-        LoadNote(selectedSong);
-=======
         state = State.Play;
->>>>>>> 9bcd32e890cb1bb5fe29dd3fb1d583d0d5fb61e1
->>>>>>> dfe8766cead11049eeee8ef5ebce95b65ab53731
     }
 
     void LoadSong(Song song)
@@ -169,13 +175,7 @@ public class SongManager : GameManager
         audioSource.loop = false;
         audioSource.mute = false;
         audioSource.volume = 0.5f;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
         audioSource.Play();
->>>>>>> 9bcd32e890cb1bb5fe29dd3fb1d583d0d5fb61e1
->>>>>>> dfe8766cead11049eeee8ef5ebce95b65ab53731
         audioSource.priority = 0;
     }
 
@@ -228,6 +228,7 @@ public class SongManager : GameManager
             bottomNote[buttonLocation].GetComponent<Note>().AddScore(bottomNote[buttonLocation].GetComponent<Note>().noteState, 
                 bottomNote[buttonLocation].GetComponent<Note>().matchColor(buttons[buttonLocation]));
         }
+        buttons[buttonLocation].GetComponent<NoteButton>().ButtonDown();
     }
     public void ToLeftButton()
     {

@@ -20,9 +20,13 @@ public class ResultManager :MonoBehaviour
         {
             Scores[i].text = SongManager.noteScores[i].ToString();
         }
-        Combo.text = SongManager.noteScores[Scores.Length].ToString();
         average = SongManager.score / SongManager.selectedSong.notenum[SongManager.difficulty];
-        if(average >= 120)
+        if(average < 0)
+        {
+            result = "F";
+            SongManager.score = 0;
+        }
+        else if(average >= 120)
         {
             result = "S";
         }
@@ -46,7 +50,7 @@ public class ResultManager :MonoBehaviour
         {
             result = "F";
         }
-
+        Combo.text = SongManager.noteScores[Scores.Length].ToString();
         Score.text = SongManager.score.ToString();
         Result.text = result;
         songName.text = SongManager.selectedSong.name;
