@@ -161,6 +161,10 @@ MonoBehaviour:
     - 111
     - 146
     - 146
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> dfe8766cead11049eeee8ef5ebce95b65ab53731
     - 111
     length: 120
     notenum: e700000096010000c2020000e7000000
@@ -203,6 +207,7 @@ MonoBehaviour:
     - 2. Normal
     - 2. Hard
     - 2. Easy
+<<<<<<< HEAD
   - name: The Big Black Remix
     composer: Holder
     info: Speedcore
@@ -237,6 +242,35 @@ MonoBehaviour:
     - 5. Normal
     - 5. Hard
     - 5. Easy
+=======
+=======
+    - 146
+    length: 120
+    notenum:
+    - 231
+    - 406
+    - 706
+    - 706
+    notelist: 0
+  - name: Killbot (Speed Up)
+    composer: Devin Martin
+    info: Dubstep
+    cover: {fileID: 21300000, guid: da4d5e101962a9a43b1943aaf9956a1c, type: 3}
+    music: {fileID: 8300000, guid: 82835313e927efb49968ad7bc95b9cee, type: 3}
+    bpm:
+    - 105
+    - 140
+    - 280
+    - 280
+    length: 212
+    notenum:
+    - 654
+    - 1269
+    - 1400
+    - 1400
+    notelist: 0
+>>>>>>> 9bcd32e890cb1bb5fe29dd3fb1d583d0d5fb61e1
+>>>>>>> dfe8766cead11049eeee8ef5ebce95b65ab53731
 --- !u!4 &129022056
 Transform:
   m_ObjectHideFlags: 0
