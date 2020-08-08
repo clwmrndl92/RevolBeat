@@ -20,7 +20,11 @@ public class SongManager : GameManager
 <<<<<<< HEAD
     public float noteSpeed;
 =======
+<<<<<<< HEAD
+    public float noteSpeed;
+=======
 >>>>>>> 9bcd32e890cb1bb5fe29dd3fb1d583d0d5fb61e1
+>>>>>>> dfe8766cead11049eeee8ef5ebce95b65ab53731
     public static SongManager songManager = null;
 
     public State state = State.Loading;
@@ -143,8 +147,13 @@ public class SongManager : GameManager
         selectedSong.LoadNote();
         LoadNote(selectedSong);
 =======
+<<<<<<< HEAD
+        selectedSong.LoadNote();
+        LoadNote(selectedSong);
+=======
         state = State.Play;
 >>>>>>> 9bcd32e890cb1bb5fe29dd3fb1d583d0d5fb61e1
+>>>>>>> dfe8766cead11049eeee8ef5ebce95b65ab53731
     }
 
     void LoadSong(Song song)
@@ -162,8 +171,11 @@ public class SongManager : GameManager
         audioSource.volume = 0.5f;
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
         audioSource.Play();
 >>>>>>> 9bcd32e890cb1bb5fe29dd3fb1d583d0d5fb61e1
+>>>>>>> dfe8766cead11049eeee8ef5ebce95b65ab53731
         audioSource.priority = 0;
     }
 

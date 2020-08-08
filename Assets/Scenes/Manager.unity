@@ -162,6 +162,9 @@ MonoBehaviour:
     - 146
     - 146
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> dfe8766cead11049eeee8ef5ebce95b65ab53731
     - 111
     length: 120
     notenum: e700000096010000c2020000e7000000
@@ -204,6 +207,42 @@ MonoBehaviour:
     - 2. Normal
     - 2. Hard
     - 2. Easy
+<<<<<<< HEAD
+  - name: The Big Black Remix
+    composer: Holder
+    info: Speedcore
+    cover: {fileID: 21300000, guid: 38cded7949544d4429d4f45139949fa7, type: 3}
+    music: {fileID: 8300000, guid: 28ff559fa689d304fad67e2d40c06978, type: 3}
+    bpm:
+    - 180
+    - 240
+    - 360
+    - 180
+    length: 180
+    notenum: 18010000f3020000d30700008e020000
+    notelist:
+    - 4. Easy
+    - 4. Normal
+    - 4. Hard
+    - 4. Easy
+  - name: Inferno
+    composer: MegaSphere
+    info: Speedcore
+    cover: {fileID: 21300000, guid: c6cc4e90ef167644189e2d990d457e2c, type: 3}
+    music: {fileID: 8300000, guid: 2b457590799521c49ae3d535f1922e9b, type: 3}
+    bpm:
+    - 170
+    - 215
+    - 340
+    - 170
+    length: 372
+    notenum: 77030000f00500003b0c000077030000
+    notelist:
+    - 5. Easy
+    - 5. Normal
+    - 5. Hard
+    - 5. Easy
+=======
 =======
     - 146
     length: 120
@@ -231,6 +270,7 @@ MonoBehaviour:
     - 1400
     notelist: 0
 >>>>>>> 9bcd32e890cb1bb5fe29dd3fb1d583d0d5fb61e1
+>>>>>>> dfe8766cead11049eeee8ef5ebce95b65ab53731
 --- !u!4 &129022056
 Transform:
   m_ObjectHideFlags: 0

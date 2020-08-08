@@ -15,6 +15,9 @@ public class Song
     public float[] bpm = new float[4];
     public float length;
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> dfe8766cead11049eeee8ef5ebce95b65ab53731
     public int[] notenum = new int[4];
     public string[] notelist = new string[4];
     public int[,] ListEasy = null;
@@ -53,10 +56,13 @@ public class Song
             }
         }
     }
+<<<<<<< HEAD
+=======
 =======
     public float[] notenum = new float[4];
     public int notelist;
 >>>>>>> 9bcd32e890cb1bb5fe29dd3fb1d583d0d5fb61e1
+>>>>>>> dfe8766cead11049eeee8ef5ebce95b65ab53731
 }
 public class GameManager : MonoBehaviour
 {
