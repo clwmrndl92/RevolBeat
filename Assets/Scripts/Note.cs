@@ -110,28 +110,25 @@ public class Note : MonoBehaviour
     {
         if (colorMatch)
         {
-            SongManager.combo++;
-            SongManager.score += 100;
-
             if (state == Note_State.Perfect)
             {
                 SongManager.combo++;
-                SongManager.score += 10;
+                SongManager.score += 150;
             }
             else if (state == Note_State.Great)
             {
                 SongManager.combo++;
-                SongManager.score += 5;
+                SongManager.score += 100;
             }
             else if (state == Note_State.Good)
             {
-                SongManager.combo++;
-                SongManager.score += 1;
+                SongManager.combo=0;
+                SongManager.score += 50;
             }
             else if (state == Note_State.Miss)
             {
                 SongManager.combo = 0;
-                SongManager.score -= 100;
+                SongManager.score -= 0;
             }
         }
         else
@@ -141,28 +138,28 @@ public class Note : MonoBehaviour
                 if (state == Note_State.Perfect)
                 {
                     SongManager.combo++;
-                    SongManager.score += 10;
+                    SongManager.score += 150;
                 }
                 else if (state == Note_State.Great)
                 {
                     SongManager.combo++;
-                    SongManager.score += 5;
+                    SongManager.score += 100;
                 }
                 else if (state == Note_State.Good)
                 {
-                    SongManager.combo++;
-                    SongManager.score += 1;
+                    SongManager.combo =0;
+                    SongManager.score += 50;
                 }
                 else if (state == Note_State.Miss)
                 {
                     SongManager.combo = 0;
-                    SongManager.score -= 5;
+                    SongManager.score -= 0;
                 }
             }
             else
             {
                 SongManager.combo = 0;
-                SongManager.score -= 5;
+                SongManager.score -= 0;
                 state = Note_State.Miss;
             }
         }

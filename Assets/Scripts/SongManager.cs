@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
+
 public enum State
 {
     Loading,
@@ -15,18 +17,20 @@ public enum State
 public class SongManager : GameManager
 {
     private AudioSource audioSource;
+<<<<<<< HEAD
+    public float noteSpeed;
+=======
+>>>>>>> 9bcd32e890cb1bb5fe29dd3fb1d583d0d5fb61e1
     public static SongManager songManager = null;
 
     public State state = State.Loading;
     public GameObject notePrefab;
-    public float noteSpeed = 100;
     public float noteInterval = 10;
     public GameObject[] notePanels;
     public GameObject[] buttons;
     public Color[] noteColors;
     public Text scoreText, comboText;
     public GameObject background;
-
     [SerializeField]public static Song selectedSong = null;
     public static int score = 0;
     public static int combo = 0;
@@ -34,8 +38,10 @@ public class SongManager : GameManager
     public static GameObject[] bottomNote;
     public static float[] notePosx;
     public static int noteNum;
-
+    public int[,] notelist;
+    public static int difficulty = 0;
     float timer, notePosY,tmptimer = 0;
+    int x = 0, y = 0;
 
     // Start is called before the first frame update
     void Awake()
@@ -57,7 +63,7 @@ public class SongManager : GameManager
     }
     void Start()
     {
-        Loading();
+
     }
 
     // Update is called once per frame
@@ -83,17 +89,37 @@ public class SongManager : GameManager
         {
             ToRightButton();
         }
+        if(state == State.Loading)
+        {
+            Loading();
+            state = State.Play;
+        }
         if (state == State.Play)
         {
             timer += Time.deltaTime;
             tmptimer += Time.deltaTime;
-            Debug.Log(tmptimer);
-            if (timer > noteInterval/10)
+            if (tmptimer > noteInterval && y==0)
             {
-                RandomNote();
-                timer = 0;
+                audioSource.Play();
+                Debug.Log("Play");
+                y = 1;
             }
-            if (tmptimer > 50)
+            if (x < selectedSong.notenum[difficulty]) {
+                if (tmptimer * 1000 > notelist[x, 0])
+                {
+                    MakeNote(notelist[x, 1], 3);
+                    //MakeNote(notelist[x, 1], notelist[x, 2]);
+                    if (x == 0)
+                    {
+                        Debug.Log("First Note");
+                    }
+                    if (x < selectedSong.notenum[difficulty])
+                    {
+                        x++;
+                    }
+                }
+            }
+            if (tmptimer > selectedSong.length+3)
             {
                 state = State.End;
             }
@@ -105,12 +131,20 @@ public class SongManager : GameManager
             SceneManager.LoadScene("Result");
         }
 }
-
+    
     void Loading()
     {
         selectedSong = GameManager.instance.songList[SelectMusic.currentsong];
+        difficulty = GameManager.instance.Difficulty;
+        noteSpeed = 3*selectedSong.bpm[difficulty];
+        noteInterval = 4*259/noteSpeed;
         LoadSong(selectedSong);
+<<<<<<< HEAD
+        selectedSong.LoadNote();
+        LoadNote(selectedSong);
+=======
         state = State.Play;
+>>>>>>> 9bcd32e890cb1bb5fe29dd3fb1d583d0d5fb61e1
     }
 
     void LoadSong(Song song)
@@ -126,14 +160,32 @@ public class SongManager : GameManager
         audioSource.loop = false;
         audioSource.mute = false;
         audioSource.volume = 0.5f;
+<<<<<<< HEAD
+=======
         audioSource.Play();
+>>>>>>> 9bcd32e890cb1bb5fe29dd3fb1d583d0d5fb61e1
         audioSource.priority = 0;
     }
 
-
+    void LoadNote(Song sn)
+    {
+        if (difficulty == 0)
+        {
+            notelist = (int[,]) sn.ListEasy.Clone();
+        }
+        else if(difficulty == 1)
+        {
+            notelist = (int[,])sn.ListNormal.Clone();
+        }
+        else
+        {
+            notelist = (int[,])sn.ListHard.Clone();
+        }
+        Debug.Log(notelist[0,0]);
+    }
     void RandomNote()
     {
-        MakeNote(Random.Range(0, noteNum), Random.Range(0, noteNum + 1));
+        MakeNote(UnityEngine.Random.Range(0, noteNum), UnityEngine.Random.Range(0, noteNum + 1));
     }
 
     void MakeNote(int noteLocation, int noteColor)
