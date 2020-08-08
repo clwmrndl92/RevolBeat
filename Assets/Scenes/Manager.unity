@@ -152,16 +152,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Difficulty: 3
   songList:
-  - name: Cha Cappella
-    composer: Jimmy Fontanez
-    info: haha ha - youtube BGM
-    cover: {fileID: 21300000, guid: 23f02efac9307ca41bc0f3f4118c2ca3, type: 3}
-    music: {fileID: 8300000, guid: ccca562279153d34a8c949a1de6733ea, type: 3}
-  - name: Game
-    composer: KimDongJoon
-    info: testSong
-    cover: {fileID: 21300000, guid: 53a858657b3a8c941a8e6f57b24c7902, type: 3}
-    music: {fileID: 8300000, guid: 9a53c80e369f96440b4de2cfe5b7b94c, type: 3}
+  - name: B0UNC3 - Paradise on E
+    composer: API
+    info: Trance
+    cover: {fileID: 21300000, guid: 009731b08f167e741b4b5fab94803476, type: 3}
+    music: {fileID: 8300000, guid: 560c4f8f6c625b8449d46f585a4c26c2, type: 3}
+    bpm:
+    - 111
+    - 146
+    - 146
+    - 111
+    length: 120
+    notenum: e700000096010000c2020000e7000000
+    notelist:
+    - 1. Easy
+    - 1. Normal
+    - 1. Hard
+    - 1. Easy
+  - name: Forsaken Neon
+    composer: Dimrain47
+    info: Techno
+    cover: {fileID: 21300000, guid: 5c4538945c2a3954abe99cdde515270e, type: 3}
+    music: {fileID: 8300000, guid: dad884ea88d7ade479d5bc79f3568464, type: 3}
+    bpm:
+    - 115
+    - 115
+    - 230
+    - 115
+    length: 153
+    notenum: 42020000ce0300006704000042020000
+    notelist:
+    - 3. Easy
+    - 3. Normal
+    - 3. Hard
+    - 3. Easy
+  - name: Killbot (Speed Up)
+    composer: Devin Martin
+    info: Dubstep
+    cover: {fileID: 21300000, guid: df9a0a9342098fc43b672fdeba95bb46, type: 3}
+    music: {fileID: 8300000, guid: 82835313e927efb49968ad7bc95b9cee, type: 3}
+    bpm:
+    - 140
+    - 280
+    - 280
+    - 140
+    length: 212
+    notenum: 8e020000f5040000780500008e020000
+    notelist:
+    - 2. Easy
+    - 2. Normal
+    - 2. Hard
+    - 2. Easy
 --- !u!4 &129022056
 Transform:
   m_ObjectHideFlags: 0
