@@ -11,6 +11,7 @@ public class ResultManager :MonoBehaviour
     public Text songName;
     public Text songComposer;
     public Image songCover;
+    public float average;
     // Start is called before the first frame update
     private void Start()
     {
@@ -20,19 +21,24 @@ public class ResultManager :MonoBehaviour
             Scores[i].text = SongManager.noteScores[i].ToString();
         }
         Combo.text = SongManager.noteScores[Scores.Length].ToString();
-        if (SongManager.score > 100)
+        average = SongManager.score / SongManager.selectedSong.notenum[SongManager.difficulty];
+        if(average >= 120)
+        {
+            result = "S";
+        }
+        else if (average >= 100)
         {
             result = "A";
         }
-        else if (SongManager.score > 50)
+        else if (average >= 80)
         {
             result = "B";
         }
-        else if (SongManager.score > 10)
+        else if (average >= 40)
         {
             result = "C";
         }
-        else if (SongManager.score > 0)
+        else if (average > 0)
         {
             result = "D";
         }
