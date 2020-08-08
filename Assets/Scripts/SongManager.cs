@@ -17,7 +17,10 @@ public enum State
 public class SongManager : GameManager
 {
     private AudioSource audioSource;
+<<<<<<< HEAD
     public float noteSpeed;
+=======
+>>>>>>> 9bcd32e890cb1bb5fe29dd3fb1d583d0d5fb61e1
     public static SongManager songManager = null;
 
     public State state = State.Loading;
@@ -136,8 +139,12 @@ public class SongManager : GameManager
         noteSpeed = 3*selectedSong.bpm[difficulty];
         noteInterval = 4*259/noteSpeed;
         LoadSong(selectedSong);
+<<<<<<< HEAD
         selectedSong.LoadNote();
         LoadNote(selectedSong);
+=======
+        state = State.Play;
+>>>>>>> 9bcd32e890cb1bb5fe29dd3fb1d583d0d5fb61e1
     }
 
     void LoadSong(Song song)
@@ -153,6 +160,10 @@ public class SongManager : GameManager
         audioSource.loop = false;
         audioSource.mute = false;
         audioSource.volume = 0.5f;
+<<<<<<< HEAD
+=======
+        audioSource.Play();
+>>>>>>> 9bcd32e890cb1bb5fe29dd3fb1d583d0d5fb61e1
         audioSource.priority = 0;
     }
 

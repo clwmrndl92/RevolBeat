@@ -1225,6 +1225,10 @@ MonoBehaviour:
   state: 0
   notePrefab: {fileID: 8772228386912765848, guid: 4e3da0cb75152424aa4f6f0fd1758906,
     type: 3}
+<<<<<<< HEAD
+=======
+  noteSpeed: 1000
+>>>>>>> 9bcd32e890cb1bb5fe29dd3fb1d583d0d5fb61e1
   noteInterval: 2
   notePanels:
   - {fileID: 1685219265}
@@ -1266,7 +1270,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
+<<<<<<< HEAD
   m_audioClip: {fileID: 0}
+=======
+  m_audioClip: {fileID: 8300000, guid: 82835313e927efb49968ad7bc95b9cee, type: 3}
+>>>>>>> 9bcd32e890cb1bb5fe29dd3fb1d583d0d5fb61e1
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
