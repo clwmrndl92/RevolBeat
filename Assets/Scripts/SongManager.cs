@@ -14,6 +14,7 @@ public enum State
 
 public class SongManager : GameManager
 {
+    private AudioSource audioSource;
     public static SongManager songManager = null;
 
     public State state = State.Loading;
@@ -39,6 +40,7 @@ public class SongManager : GameManager
     // Start is called before the first frame update
     void Awake()
     {
+        audioSource = gameObject.GetComponent<AudioSource>();
         if (songManager == null)
             songManager = this;
         else if (songManager != this)
@@ -109,7 +111,6 @@ public class SongManager : GameManager
         selectedSong = GameManager.instance.songList[SelectMusic.currentsong];
         LoadSong(selectedSong);
         state = State.Play;
-        //gameObject.GetComponent<AudioSource>().Play(delay);
     }
 
     void LoadSong(Song song)
@@ -121,7 +122,12 @@ public class SongManager : GameManager
             noteScores[i] = 0;
         }
         background.GetComponent<Image>().sprite = song.cover;
-        gameObject.GetComponent<AudioSource>().clip = song.music;
+        audioSource.clip = song.music;
+        audioSource.loop = false;
+        audioSource.mute = false;
+        audioSource.volume = 0.5f;
+        audioSource.Play();
+        audioSource.priority = 0;
     }
 
 
@@ -143,10 +149,13 @@ public class SongManager : GameManager
     public void Pause()
     {
         Time.timeScale = 0.0f;
+        //audioSource.Stop();
+        audioSource.Pause();
     }
     public void ReStart()
     {
         Time.timeScale = 1.0f;
+        audioSource.UnPause();
     }
     public void OnClick(int buttonLocation)
     {

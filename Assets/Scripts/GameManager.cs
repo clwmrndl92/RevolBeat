@@ -11,6 +11,10 @@ public class Song
     public string info;
     public Sprite cover;
     public AudioClip music;
+    public float[] bpm = new float[4];
+    public float length;
+    public float[] notenum = new float[4];
+    public int notelist;
 }
 public class GameManager : MonoBehaviour
 {
