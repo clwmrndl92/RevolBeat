@@ -171,6 +171,7 @@ public class Note : MonoBehaviour
         {
             SongManager.noteScores[4] = SongManager.combo;
         }
+        SongManager.songManager.ComboEffect(state);
         Destroy(gameObject);
     }
     public bool matchColor(GameObject button)

@@ -28,6 +28,7 @@ public class SongManager : GameManager
     public Color[] noteColors;
     public Text scoreText, comboText, hpText;
     public GameObject background;
+    public GameObject[] comboEffects;
 
     [SerializeField]public static Song selectedSong = null;
     public static int score = 0;
@@ -59,6 +60,13 @@ public class SongManager : GameManager
         }
         notePosY = notePanels[0].transform.position.y;
         bottomNote = new GameObject[noteNum];
+        score = 0;
+        combo = 0;
+        hp = 100;
+        for(int i = 0; i < 5; ++i)
+        {
+            noteScores[i] = 0;
+        }
     }
     void Start()
     {
@@ -118,8 +126,8 @@ public class SongManager : GameManager
             if (x < selectedSong.notenum[difficulty]) {
                 if (tmptimer * 1000 > notelist[x, 0])
                 {
-                    MakeNote(notelist[x, 1], 3);
-                    //MakeNote(notelist[x, 1], notelist[x, 2]);
+                    //MakeNote(notelist[x, 1], 3);
+                    MakeNote(notelist[x, 1], notelist[x, 2]);
                     if (x == 0)
                     {
                         Debug.Log("First Note");
@@ -244,4 +252,11 @@ public class SongManager : GameManager
             buttons[i].gameObject.GetComponent<NoteButton>().ToRightButton();
         }
     }
+
+    public void ComboEffect(Note.Note_State state)
+    {
+        comboEffects[(int)state].GetComponent<ComboEffect>().makeEffect();
+        Debug.Log("clone");
+    }
+
 }

@@ -14,13 +14,11 @@ public class NoteButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     // Start is called before the first frame update
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("버튼이 눌려지고 있음");
         _pressed = true;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("버튼 눌림이 해제됨");
         _up = true;
     }
     // Use this for initialization

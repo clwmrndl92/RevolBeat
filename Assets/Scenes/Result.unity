@@ -398,7 +398,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 8}
   m_SizeDelta: {x: 400, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &193530776
@@ -1222,12 +1222,12 @@ PrefabInstance:
     - target: {fileID: 4868732023900298397, guid: 558e33f43135b0a4aad43efa4bc85bfe,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -50
+      value: 81
       objectReference: {fileID: 0}
     - target: {fileID: 4868732023900298397, guid: 558e33f43135b0a4aad43efa4bc85bfe,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -30
+      value: -44
       objectReference: {fileID: 0}
     - target: {fileID: 4868732023900298397, guid: 558e33f43135b0a4aad43efa4bc85bfe,
         type: 3}
@@ -1456,7 +1456,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: 100}
+  m_AnchoredPosition: {x: -372, y: 30.5}
   m_SizeDelta: {x: 200, y: 160}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &770511728
@@ -1895,7 +1895,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 50, y: 170}
+  m_AnchoredPosition: {x: 257, y: 74}
   m_SizeDelta: {x: 205.82648, y: 250}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1037370875
@@ -1919,7 +1919,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: e333bd4928980674c98a8c82d5bf833c, type: 3}
-    m_FontSize: 120
+    m_FontSize: 150
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -2500,12 +2500,12 @@ PrefabInstance:
     - target: {fileID: 4868732023900298397, guid: 558e33f43135b0a4aad43efa4bc85bfe,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -50
+      value: 81
       objectReference: {fileID: 0}
     - target: {fileID: 4868732023900298397, guid: 558e33f43135b0a4aad43efa4bc85bfe,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -80
+      value: -106
       objectReference: {fileID: 0}
     - target: {fileID: 4868732023900298397, guid: 558e33f43135b0a4aad43efa4bc85bfe,
         type: 3}
@@ -3111,6 +3111,7 @@ MonoBehaviour:
   songName: {fileID: 133611999}
   songComposer: {fileID: 73386085}
   songCover: {fileID: 1463389875}
+  average: 0
 --- !u!4 &2138608154
 Transform:
   m_ObjectHideFlags: 0
